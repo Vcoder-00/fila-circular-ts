@@ -9,55 +9,62 @@ class FilaCircular {
     constructor(capacidade: number) {
         this.dados = [];
         this.capacidade = capacidade;
-        this.cheia = this.cheia;
     }
 
     adicionar(num: number): void {
+        //caso a fila esteja vazia, os ponteiros f e o b ficam com 0, para marcar o inicio do Array
         if (this.estaVazia()) {
-            this.f += 1;
-            this.b += 1;
+            this.f = 0;
+            this.b = 0;
+            this.dados[this.b] = num;
+            return;
         }
         else if (this.estaCheia()) {
             return console.log("fila cheia");
         }
-        // caso imcompleta (incluindo quando vazia)
-        this.dados[this.b] = num;
+
+        // caso incompleta 
         this.b = (this.b + 1) % this.capacidade;
+        this.dados[this.b] = num;
     }
 
     remover() {
         if (this.estaVazia()) {
-            console.log("pilha vazia");
-            return;
+            return console.log("Fila vazia"); 
         }
+
         // verificando se o valor futuro é igual ao ponteiro b
-        let proximoF: number = (this.f + 1) % this.capacidade; // ele enquanto descrito já executado
+        let proximoF: number = (this.f + 1) % this.capacidade;
+
         // resetando os ponteiros caso seja necessario
-        if (proximoF === this.b){
+        if (this.f === this.b) {
             this.f = -1;
             this.b = -1;
         }
         else {
-            this.f = (this.f + 1) % this.capacidade;
+            this.f = proximoF;
         }
-        
     }
 
     exibirTamanho(): number {
         if (this.estaVazia()) {
-            return 0;
-        }
-        else if (this.estaCheia()) {
-            return this.capacidade;
-        }
-        let contador = this.f;
-        let resultado: number = 0;
-        do {
-            contador = (contador + 1) % 5;
-            resultado++;
-        } while (contador < this.b);
-        return resultado;
+        return 0;
     }
+    else if (this.estaCheia()) {
+        return this.capacidade;
+    }
+
+    // Corrigindo erro de retornar um espaço a mais dentro da fila
+    let contador = this.f;
+    let resultado = 1; 
+
+    while (contador !== this.b) {
+        contador = (contador + 1) % this.capacidade;
+        resultado++;
+    }
+
+    return resultado;
+}
 
     exibirFila(): void {
         if (this.estaVazia()) {
@@ -68,57 +75,71 @@ class FilaCircular {
         }
         let stringFila: string = '[ ';
         let registrador = this.f;
-        while (registrador != this.b) {
+        //corrigindo: antes o while não exibia o ultimo item da fila, na pos num
+        while (true) {
             stringFila += `${this.dados[registrador]} `;
+            if (registrador === this.b) {
+                break;           
+            }
             registrador = (registrador + 1) % this.capacidade;
         }
+
         stringFila += ']';
         return console.log(stringFila);
     }
 
     estaCheia(): boolean {
-        if (this.b === this.f) {
+        // corrigido: erro da fila aparecer cheia no inicio
+        if (((this.b + 1) % this.capacidade) === this.f) {
             this.cheia = true;
             return true;
-        }
-        return false
-    }
-
-    estaVazia() {
-        if (this.b === -1 && this.f === -1) {
-            return true
         }
         return false;
     }
 
-    getInicio(){
+    estaVazia() {
+        //Aqui se o ponteiro b e o ponteiro f estiverem na pos -1 retorna true para fila vazia, se não retorna false
+        if (this.b === -1 && this.f === -1) {
+            return true;
+        }
+        return false;
+    }
+
+    getInicio() {
         return console.log(`Inicio da fila: ${this.dados[this.f]}`);
     }
 
-    getFinal(){
+    getFinal() {
         return console.log(`Final da fila: ${this.dados[this.b]}`);
     }
 
-    getCapacidade(){
+    getCapacidade() {
         return console.log(`Capacidade: ${this.capacidade}`);
     }
 
-    getEspacoDisponivel(){
-        return console.log(`Espaço disponível: ${this.capacidade - this.exibirTamanho()}`)
+    getEspacoDisponivel() {
+        return console.log(`Espaço disponível: ${this.capacidade - this.exibirTamanho()}`);
     }
 }
 
-const fila = new FilaCircular(4);
-fila.adicionar(4);
-fila.adicionar(3);
-fila.adicionar(2);
-fila.remover();
-fila.remover();
-fila.remover();
-fila.adicionar(5);
-fila.adicionar(4);
-
+const fila = new FilaCircular(5);
 fila.exibirTamanho();
+
+fila.adicionar(12)
+fila.adicionar(1)
+fila.adicionar(2)
+fila.adicionar(3)
+fila.adicionar(4)
+
+fila.remover()
+fila.remover()
+fila.remover()
+
+
+fila.exibirFila()
+
 fila.getEspacoDisponivel();
+
 console.log(fila.estaCheia());
+
 fila.exibirFila();
