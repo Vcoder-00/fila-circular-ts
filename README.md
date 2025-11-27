@@ -6,7 +6,7 @@ Implementação de uma **fila circular** utilizando **TypeScript**, desenvolvida
 
 ## Integrantes
 - Vitor Lopes @Vcoder-00
-- Mateus Araújo @{colocar-username-aqui}
+- Mateus Araújo @MateusARJ
 
 --professor: Jonathas Jivago
 
