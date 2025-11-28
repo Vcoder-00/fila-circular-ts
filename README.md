@@ -6,9 +6,9 @@ Implementação de uma **fila circular** utilizando **TypeScript**, desenvolvida
 
 ## Integrantes
 - Vitor Lopes @Vcoder-00
-- Mateus Araújo @{colocar-username-aqui}
+- Mateus Araújo @MateusARJ
 
---professor: Jonathas Jivago
+--Professor: Jonathas Jivago
 
 ## 📚 Sobre o Projeto
 Este projeto tem como objetivo demonstrar o funcionamento de uma **fila circular**, uma estrutura de dados que permite o reaproveitamento de posições já liberadas, evitando desperdício de memória e melhorando a eficiência em operações de enfileiramento e desenfileiramento.
