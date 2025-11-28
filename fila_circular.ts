@@ -1,4 +1,4 @@
-class FilaCircular {
+export class FilaCircular {
     private dados: Array<number>;
     private capacidade: number;
     private cheia: boolean = false;

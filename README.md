@@ -17,10 +17,11 @@ Este projeto tem como objetivo demonstrar o funcionamento de uma **fila circular
 
 ## ⚙️ Funcionalidades
 - Criar uma fila circular com tamanho definido
-- Inserir elementos na fila (`enqueue`)
-- Remover elementos da fila (`dequeue`)
+- Inserir elementos na fila (`adicionar`)
+- Remover elementos da fila (`remover`)
 - Verificar se a fila está cheia ou vazia
 - Visualizar o estado atual da fila
+- Exibir o tamanho atual da fila
 
 ---
 
@@ -29,7 +30,7 @@ Este projeto tem como objetivo demonstrar o funcionamento de uma **fila circular
 - [Node.js](https://nodejs.org/) – execução e testes
 - [npm](https://www.npmjs.com/) – gerenciamento de pacotes
 - [ts-node](https://www.npmjs.com/package/ts-node) – execução de arquivos TypeScript diretamente
-
+- [Parcel](https://parceljs.org/) - empacotador de aplicações web
 ---
 
 ## 🚀 Como Executar
@@ -52,3 +53,14 @@ Este projeto tem como objetivo demonstrar o funcionamento de uma **fila circular
    ```bash
    ts-node ./fila-circular.ts
    ```
+## 🚀 Possivel também testar por meio do parcel
+1. Instale as dependências:
+   ```bash
+   npm install 
+   ```
+1. Faça as interações da fila no arquivo `index.ts`
+2. Use o comando abaixo para realizar a build do projeto:
+   ```bash
+   npm run start
+   ```
+3. Veja o resultado no console do navegador.
